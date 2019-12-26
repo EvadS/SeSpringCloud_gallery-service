@@ -1,4 +1,4 @@
-package com.example.zuulservice;
+package com.example.securityservice.security;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

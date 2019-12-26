@@ -2,11 +2,11 @@
 spring:
     application:
         name: user-service
-    cloud:
-        config:
-            discovery:
-                enabled: true
-                service-id: ms-config-server
+#    cloud:
+#        config:
+#            discovery:
+#                enabled: true
+#                service-id: ms-config-server
 server:
     port: 8766
 eureka:

@@ -32,7 +32,20 @@ User-Service  - Discovery client
 4. zuul-service       http://localhost:8766
 5. security-service.  http://localhost:9100
 
-Тестируем:
+##Mongo DB 
+изначально я предполагаю использование установленного монго 
+####статус 
+``` sudo service mongod status ```
+
+####страрт 
+``` sudo service mongod start ```
+
+####стопнуть
+``` sudo service mongod stop ```
+
+в gallery service есть инструкия по использованию <b>doker</b> 
+#Тестируем:
+
 -------------------------------------
 POST
 localhost:8766/auth
