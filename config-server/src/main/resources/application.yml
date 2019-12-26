@@ -10,19 +10,29 @@ spring:
           native:
             search-locations:
 #              /home/ks/IdeaProjects/Gallery-Service/ms-config-properties/{application}/{profile},
-              file://${user:home}/Projects/Learning/SpringBootClouds/NetflixSample/se-spring-cloud_gallery-service_ms-config
-#
-#  spring:
-#    profiles: git
-#    cloud:
-#      config:
-#        server:
-#          git:
-#            uri: https://github.com/EvadS/se-spring-cloud_gallery-service_config/
-#            search-paths:
-#              - "ms-config-properties/{application}/{profile}"
+              ${user.home}/Projects/Learning/SpringBootClouds/NetflixSample/se-spring-cloud_gallery-service_ms-config/{application}/{profile},
 
-  eureka:
-  client:
-  serviceUrl:
-  defaultZone: http://localhost:8761/eureka/
+#              '{application}, {application}/your-subdirectory'
+
+#              ${user.home}/Projects/Learning/SpringBootClouds/se-spring-cloud-config-client-server-git-repo
+
+
+
+##  spring:
+##    profiles: git
+##    cloud:
+##      config:
+##        server:
+##          git:
+##            uri: https://github.com/EvadS/se-spring-cloud_gallery-service_config/
+##            search-paths:
+##              - "ms-config-properties/{application}/{profile}"
+#
+
+#    cloud:
+#        config:
+#            server:
+#                git:
+#                    uri: ${user.home}/Projects/Learning/SpringBootClouds/se-spring-cloud-config-client-server-git-repo
+
+

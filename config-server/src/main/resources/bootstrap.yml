@@ -3,3 +3,10 @@ server:
 spring:
     application:
         name: config-server
+
+#    cloud:
+#        config:
+#            server:
+#                git:
+#                    uri: ${user.home}/Projects/Learning/SpringBootClouds/se-spring-cloud-config-client-server-git-repo
+

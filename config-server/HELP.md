@@ -1,14 +1,25 @@
 # Getting Started
 
-### Reference Documentation
-For further reference, please consider the following sections:
+http://localhost:8888/config-server-client/development
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.2.2.RELEASE/maven-plugin/)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/2.2.2.RELEASE/reference/htmlsingle/#using-boot-devtools)
 
-### Guides
-The following guides illustrate how to use some features concretely:
+http://localhost:8888/client-config/gallery-service/development
 
-* [Centralized Configuration](https://spring.io/guides/gs/centralized-configuration/)
+http://localhost:8888/client-config/gallery-service/development
 
+
+http://localhost:8888/gallery-service/default
+
+
+
+ Dockerfile to build the image. We can use this:
+
+
+# requires Docker version 17.05.0-ce-rc1, build 2878a85
+FROM maven:3.5-jdk-8 as BUILDCONFIGSERVER
+COPY src /usr/src/myapp/src
+COPY pom.xml /usr/src/myapp
+RUN mvn -f /usr/src/myapp/pom.xml clean package -DskipTests
+FROM openjdk:alpine
+COPY --from=BUILDCONFIGSERVER /usr/src/myapp/target/*.jar /maven/
+CMD java $JAVA_OPTS -jar maven/*.jar
