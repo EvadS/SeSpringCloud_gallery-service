@@ -19,3 +19,13 @@
   
  * RestTemplate
  * WebClient (неблокирующим клиентом с поддержкой Reactive Stream)
+
+
+You want to use backtick not regular tick:
+
+sudo kill -9 `sudo lsof -t -i:9001`
+If that doesn't work you could also use $() for command interpolation:
+
+sudo kill -9 $(sudo lsof -t -i:8761)
+
+fuser -n tcp -k 8761

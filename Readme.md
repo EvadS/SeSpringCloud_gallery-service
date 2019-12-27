@@ -88,6 +88,12 @@ http://localhost:8081/
 https://medium.com/@kirill.sereda/spring-cloud-netflix-microservices-start-project-%D1%81%D0%B5%D1%80%D0%B8%D1%8F-%D1%81%D1%82%D0%B0%D1%82%D0%B5%D0%B9-%D1%87%D0%B0%D1%81%D1%82%D1%8C-1-7a892ad5f16
 
 Запуск проекта.
+без докера
+ 
+``` make run ```
+
+очистка портов 
+fuser -n tcp -k 8761
 
 
 

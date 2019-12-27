@@ -19,3 +19,9 @@ eureka:
             web:
                 exposure:
                     include: hystrix.stream
+
+movie-service:
+  ribbon:
+    eureka:
+      enabled: true
+    ServerListRefreshInterval: 1000
