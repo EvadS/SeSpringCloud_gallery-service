@@ -95,5 +95,32 @@ https://medium.com/@kirill.sereda/spring-cloud-netflix-microservices-start-proje
 очистка портов 
 fuser -n tcp -k 8761
 
+## Замечания 
+
+Ribbon
+user-service/src/main/resources/application.yml
+
+
+movie-service:
+  ribbon:
+    eureka:
+      enabled: true
+    ServerListRefreshInterval: 1000
+
+#movie-service:
+#  ribbon:
+#    listOfServers: localhost:8085,localhost:8086
+#    eureka:
+#      enabled: true
+
+
+в дополнение (серверы для балансировки ) мы коментируем первую расскоментим вторую настройку
+собираем майвеном 
+java -jar -Dserver.port=8086 uappl.jar\
+
+смотрим : localhost:8082/get
+
+Если мы попробуем несколько раз обновить страницу по этому запросу, то увидим как меняется порт, т.к. Ribbon определяет сам, какому сервису (movie-service либо его реплике запущенной на другом порту необходимо обратиться, в зависимости от нагрузки).
+
 
 
