@@ -94,6 +94,8 @@ https://medium.com/@kirill.sereda/spring-cloud-netflix-microservices-start-proje
 
 очистка портов 
 fuser -n tcp -k 8761
+kill -9 PID
+
 
 ## Замечания 
 

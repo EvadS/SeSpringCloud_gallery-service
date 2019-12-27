@@ -1,22 +1,17 @@
 # Getting Started
 
-### Reference Documentation
-For further reference, please consider the following sections:
+на 3- м шаге (когда пытаемся запустить несмколько реплик )
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.2.2.RELEASE/maven-plugin/)
-* [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/2.2.2.RELEASE/reference/htmlsingle/#production-ready)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/2.2.2.RELEASE/reference/htmlsingle/#boot-features-developing-web-applications)
-* [Spring Data MongoDB](https://docs.spring.io/spring-boot/docs/2.2.2.RELEASE/reference/htmlsingle/#boot-features-mongodb)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/2.2.2.RELEASE/reference/htmlsingle/#using-boot-devtools)
-* [Spring Data Reactive MongoDB](https://docs.spring.io/spring-boot/docs/2.2.2.RELEASE/reference/htmlsingle/#boot-features-mongodb)
+maven install
 
-### Guides
-The following guides illustrate how to use some features concretely:
+java -jar -Dspring.profiles.active=gallery-service-replica01 target/gappl.jar
 
-* [Building a RESTful Web Service with Spring Boot Actuator](https://spring.io/guides/gs/actuator-service/)
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
-* [Accessing Data with MongoDB](https://spring.io/guides/gs/accessing-data-mongodb/)
+Идем на Eureka Server replica, ведь на ней сейчас наш gallery-service зарегистрирован
+
+http://my-eureka-server-us.com:9001
+
+и увидим там уже не один запущенный gallery-service, а 2 (т.к. у нас вторая - это реплика).
+Идем на сам gallery-service
+localhost:8081
+видим что он видит Eureka Server replica и видит свою реплику (gallery-service replica).
 
