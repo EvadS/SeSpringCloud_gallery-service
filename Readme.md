@@ -126,3 +126,17 @@ java -jar -Dserver.port=8086 uappl.jar\
 
 
 
+##ELK (ElasticSearch + Logstash + Kibana)
+Установите по очереди
+elasticsearch
+https://www.elastic.co/downloads/elasticsearch
+logstash
+https://www.elastic.co/downloads/logstash
+kibana
+https://www.elastic.co/downloads/kibana
+
+
+/usr/share/logstash/
+
+
+
