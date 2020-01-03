@@ -2,7 +2,9 @@
 
 на 3- м шаге (когда пытаемся запустить несмколько реплик )
 
-maven install
+ localhost:8082
+
+maven ~~~~install
 
 java -jar -Dspring.profiles.active=gallery-service-replica01 target/gappl.jar
 

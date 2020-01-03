@@ -18,8 +18,8 @@ import java.util.logging.Logger;
 @RequestMapping("/")
 public class BucketController {
 
-    Logger logger = Logger.getLogger(BucketController.class.getName());
 
+    Logger logger = java.util.logging.Logger.getLogger(BucketController.class.getName());
 
     @Autowired
     private Environment env;
@@ -29,7 +29,7 @@ public class BucketController {
 
     @RequestMapping("/")
     public String home() {
-        String home = "MY Gallery-Service running at port: " + env.getProperty("local.server.port");
+        String home = "Gallery-Service running at port: " + env.getProperty("local.server.port");
         logger.info(home);
         return home;
     }

@@ -16,9 +16,18 @@ Used: Eureka, Config Server, Config Client, Zuul Api Gateway, Feign Client, Rest
 * JWT Security
 -------------------
 * Elastic Search Kibana
+---
+* Sleuth
+* Zipkin
+* Hystrix( Circuit Breaker) and dashboard
+
 
 
 ### уточнения 
+Для корректной работы нужен git для config -service,в нашем случае 
+https://github.com/EvadS/se-spring-cloud_gallery-service_ms-config
+и 
+https://github.com/EvadS/se-spring-cloud_gallery-service_ms-config
 
 ### Компоненты системы 
 Eureka Server - Discovery server 
@@ -27,10 +36,18 @@ User-Service  - Discovery client
 
 ## Запуск всего этого 
 1. Eureka Server      http://localhost:8761 
-2. gallery-service    http://localhost:8766
-3. user-service       http://localhost:8082
-4. zuul-service       http://localhost:8766
-5. security-service.  http://localhost:9100
+2. config-service     http://localhost:8888 
+3. mongo (докер или локальная версия )
+4. Zipkin 	      http://localhost:9411
+5. gallery-service    http://localhost:8766
+6. user-service       http://localhost:8082
+7. zuul-service       http://localhost:8766
+8. security-service.  http://localhost:9100
+
+
+
+## Zipkin
+``` docker run -d -p 9411:9411 openzipkin/zipkin ```
 
 ##Mongo DB 
 изначально я предполагаю использование установленного монго 
@@ -138,5 +155,41 @@ https://www.elastic.co/downloads/kibana
 
 /usr/share/logstash/
 
+## Sleuth
+   [application name, traceId, spanId, export]
+`application name` - это имя приложения, указанное в application.yml
+`traceId` - ID, назначаемый каждому запросу.
+`spanId` - используется для отслеживания работы. Каждый запрос может иметь несколько шагов, каждый шаг имеет свой уникальный spanId.
+`export` - это флаг, который указывает, следует ли экспортировать определенный журнал в инструмент агрегирования журналов, такой как Zipkin.
 
+http://localhost:8082/data
+
+смотрим в консоли `gallery-service` и user-service
+Если вы используете `Feign` от `Spring Cloud Netflix`, информация трассировки также будет добавлена ​​к этим запросам. Кроме того, `Zuul` из `Spring Cloud Netflix` также будет перенаправлять заголовки через прокси в другие сервисы. 
+
+## Zipkin
+
+Вы можете установить `Zipkin` следуюшим образом:
+
+1) Запустить с помощью docker
+  ```   docker run -d -p 9411:9411 openzipkin/zipkin ```
+
+2) Скачать с сайта (нужна минимум java 8 или выше)
+
+
+  ```   curl -sSL https://zipkin.io/quickstart.sh | bash -s ```
+  ```   java -jar zipkin.jar ```
+
+localhost:9411 и вы увидите веб интерфейс Zipkin
+
+## Hystrix
+localhost:8082/hystrix
+
+Введите туда (верзняя строчка)
+localhost:8082/actuator/hystrix.stream 
+
+(Заполнять все поля !!!)
+Теерь попробуйте получить данные у gallery-service
+``` curl http://localhost:8082/data ```
+Посмотрите в Hystrix Dashboard — вы увидите изменяющееся значение в режиме реального времени. Выполните запрос несколько раз.
 

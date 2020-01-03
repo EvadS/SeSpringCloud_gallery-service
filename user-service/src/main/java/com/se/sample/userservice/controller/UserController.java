@@ -7,8 +7,12 @@ import com.se.sample.userservice.service.TestService;
 import com.se.sample.userservice.service.WebClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +22,7 @@ import reactor.core.publisher.Flux;
 import java.util.List;
 import java.util.logging.Logger;
 
+
 /**
  *  мы будем общаться с gallery-service через RestTemplate, FeignClient и WebClient.
  */
@@ -26,7 +31,8 @@ import java.util.logging.Logger;
 public class UserController {
 
     //    private static final Logger LOG = Logger.getLogger(UserController.class.getName());
-    Logger logger = Logger.getLogger(UserController.class.getName());
+
+    Logger logger = java.util.logging.Logger.getLogger(UserController.class.getName());
 
 
     @Autowired
@@ -43,15 +49,20 @@ public class UserController {
 
     @RequestMapping("/")
     public String home() {
-        // This is useful for debugging
-        // When having multiple instance of gallery service running at different ports.
-        // We load balance among them, and display which instance received the request.
-        return "Hello from User-Service running at port: " + env.getProperty("local.server.port");
+        String home = "User-Service running at port: " + env.getProperty("local.server.port");
+        logger.info(home);
+        return home;
+    }
+
+    @GetMapping("/start")
+    public String start() {
+        logger.info("Write some log");
+        return "Start page";
     }
 
     // Using Feign Client
     @RequestMapping(path = "/getAllDataFromGalleryService")
-    public List<Bucket> getData(Model model) {
+    public List<Bucket> getDataByFeignClient() {
         List<Bucket> list = ServiceFeignClient.FeignHolder.create().getAllEmployeesList();
         logger.info("Calling through Feign Client");
         return list;
@@ -70,5 +81,10 @@ public class UserController {
         logger.info("Calling through WebClient");
         return webClientService.getDataByWebClient();
     }
+
+//    @ExceptionHandler(DataAccessException.class)
+//    public ResponseEntity<MyCustomServerException> handleWebClientResponseException(DataAccessException ex) {
+//        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MyCustomServerException("A Bucket with the same title already exists"));
+//    }
 }
 

@@ -1,12 +1,12 @@
 #
 spring:
     application:
-        name: user-service
-#    cloud:
-#        config:
-#            discovery:
-#                enabled: true
-#                service-id: ms-config-server
+        name: zuul-service
+    cloud:
+        config:
+            discovery:
+                enabled: true
+                service-id: ms-config-server
 server:
     port: 8766
 eureka:

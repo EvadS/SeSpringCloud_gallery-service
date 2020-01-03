@@ -3,6 +3,7 @@ package com.se.sample.userservice.service;
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;
 //import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -13,9 +14,8 @@ public class TestService {
     @Autowired
     private EurekaClient eurekaClient;
 
-    //TODO: what is
-    //TODO: what is
-//    @HystrixCommand(fallbackMethod = "failed")
+
+    @HystrixCommand(fallbackMethod = "failed")
     public String data() {
         InstanceInfo instanceInfo = eurekaClient.getNextServerFromEureka("gallery-service", false);
         String serviceBaseUrl = instanceInfo.getHomePageUrl();
